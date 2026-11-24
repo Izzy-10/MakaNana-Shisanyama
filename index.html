@@ -26,6 +26,10 @@ h1 em{color:var(--gold);font-style:italic}
 .tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 0 12px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5}
 .tabs button{flex:none;background:none;color:var(--text);border:1px solid var(--line);border-radius:99px;padding:8px 16px;font:600 15px Barlow;cursor:pointer}
 .tabs button[aria-pressed=true]{background:var(--gold);color:#000;border-color:var(--gold)}
+.order-guide{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px;scroll-margin-top:64px}
+.order-guide h2{font-size:28px;color:var(--gold);margin:0 0 6px}
+.order-guide p{margin:0 0 12px;color:var(--mute);font-size:14px}
+.order-guide img{display:block;width:100%;height:auto;border-radius:8px}
 .item{display:flex;gap:12px;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin-bottom:10px}
 .item h3{font-size:24px}
 .item p{margin:2px 0 0;color:var(--mute);font-size:14px}
@@ -128,7 +132,7 @@ footer a{color:var(--gold)}
   <img class="footer-logo" src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG_20261124_154947-WqxIapEeOoAX33LqPiubK2qR5hBeYe.jpg" alt="Maka Nana Shisanyama logo">
   <details class="footer-accordion">
     <summary>Menu</summary>
-    <div class="footer-detail"><p>Freshly grilled favourites, curries, sides and drinks.</p><a href="#tabs">Browse the menu</a></div>
+    <div class="footer-detail"><p>Freshly grilled favourites, curries, sides and drinks.</p><a href="#tabs">Browse the menu</a><br><a href="#tabs" id="fGuide">Important ordering information</a></div>
   </details>
   <details class="footer-accordion">
     <summary>Support</summary>
@@ -191,6 +195,7 @@ footer a{color:var(--gold)}
   <h2>Menu</h2>
   <div class="mlist" id="mlist">
    <button data-p="order">Order food</button>
+   <button data-p="guide">Important ordering information</button>
    <button data-p="support">Support</button>
    <button data-p="about">About us</button>
    <button data-p="contact">Contact us</button>
@@ -244,11 +249,15 @@ if(!isOpen())$("open").className="open closed";
 
 function tabs(){
  $("tabs").innerHTML="";
- Object.keys(MENU).forEach(function(c){
+ Object.keys(MENU).concat("Important").forEach(function(c){
   var b=document.createElement("button");b.textContent=c;b.setAttribute("aria-pressed",c===cat);
   b.onclick=function(){cat=c;tabs();menu()};$("tabs").appendChild(b)});
 }
 function menu(){
+ if(cat==="Important"){
+  $("menu").innerHTML='<section class="order-guide" aria-labelledby="guideTitle"><h2 id="guideTitle">Important ordering information</h2><p>Please review before placing an order.</p><img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/05bc96f501c5a611c052927709b5ecb2-VsaVRJAR6M4WwvuN8qqNJUCYutqafi.webp" alt="How to order online: order online for delivery only, do not order online for collection, order early as delivery may take an hour or more, contact driver Qwabe on 072 582 3880, contact Maka Nana on +27 71 840 5670 for enquiries, and delivery starts at R50 around town with location-based fees outside town." loading="lazy" decoding="async"></section>';
+  return;
+ }
  $("menu").innerHTML=MENU[cat].map(function(i){
   var q=cart[i.id]||0;
   return '<div class="item"><div><h3>'+i.n+'</h3><p>'+i.d+'</p><div class="price">'+R(i.p)+'</div></div><div class="qty">'+
@@ -374,11 +383,13 @@ $("menuBtn").onclick=function(){show("menuSheet")};
 $("menuClose").onclick=function(){hide("menuSheet")};
 $("mlist").onclick=function(e){var b=e.target.closest("button");if(!b)return;var k=b.dataset.p;
  if(k==="order"){hide("menuSheet");window.scrollTo(0,0);return}
+ if(k==="guide"){hide("menuSheet");cat="Important";tabs();menu();window.scrollTo(0,0);return}
  $("pgTitle").textContent=PAGES[k].t;$("pgBody").innerHTML=PAGES[k].h;hide("menuSheet");show("pageSheet")};
 $("pgBack").onclick=function(){hide("pageSheet");show("menuSheet")};
 $("pgClose").onclick=function(){hide("pageSheet")};
 tabs();menu();sum();
 [["fSupport","support"],["fAbout","about"],["fContact","contact"],["fLegal","legal"]].forEach(function(x){$(x[0]).onclick=function(e){e.preventDefault();$("pgTitle").textContent=PAGES[x[1]].t;$("pgBody").innerHTML=PAGES[x[1]].h;show("pageSheet")}});
+$("fGuide").onclick=function(e){e.preventDefault();cat="Important";tabs();menu();window.scrollTo(0,0)};
 </script>
 </body>
 </html>
