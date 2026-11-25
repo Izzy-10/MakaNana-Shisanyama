@@ -13,9 +13,9 @@ html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--text);font:400 16px/1.45 Barlow,system-ui,sans-serif;background-image:radial-gradient(900px 300px at 50% -80px,#4a1a0a 0,transparent 70%)}
 h1,h2,h3{font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;letter-spacing:.02em;margin:0}
 .wrap{max-width:640px;margin:0 auto;padding:0 16px 120px}
-header{text-align:center;padding:28px 0 30px}
+header{text-align:center;padding:28px 0 6px}
 .brand{font:400 15px Barlow;letter-spacing:.35em;color:var(--mute)}
-.logo{background-color:var(--gold);border-style:solid;border-width:1px;font-family:Georgia,serif;font-size:40px;line-height:1}
+.logo{border-style:solid;border-width:1px;font-family:Georgia,serif;font-size:40px;line-height:1}
 h1{font-size:54px;line-height:.95;margin-top:14px}
 h1 em{color:var(--gold);font-style:italic}
 .open{display:inline-block;margin-top:12px;padding:6px 14px;border:1px solid var(--gold);border-radius:99px;font-weight:600;color:var(--gold)}
@@ -86,12 +86,13 @@ header{position:relative}
 .order-guide h2{font-size:28px;color:var(--gold);margin:0 0 6px}
 .order-guide p{margin:0 0 12px;color:var(--mute);font-size:14px}
 .order-guide img{display:block;width:100%;height:auto;border-radius:8px}
-.site-footer{margin:38px -16px 0;padding:26px 16px 18px;border-top:1px solid #45464a;background:#202124;text-align:left;color:#f5f3f2}
+.site-footer{margin:38px -16px 0;padding:26px 16px 18px;border-top:1px solid #45464a;background:#202124;text-align:left;color:#f5f2f2;box-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05)}
 .footer-logo{display:block;width:min(100%,520px);height:auto;margin:0 auto 28px;background:#100906}
 .footer-logo .logo{font-size:34px}
 .footer-accordion{border-bottom:1px solid #494a4e}
 .footer-accordion:first-of-type{border-top:1px solid #494a4e}
 .footer-accordion summary{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:52px;padding:10px 12px 10px 16px;list-style:none;cursor:pointer;font:600 16px/1.35 Barlow,system-ui,sans-serif;color:#fff}
+.site-footer > details.footer-accordion:nth-of-type(2) > summary,.site-footer > details.footer-accordion:nth-of-type(4) > summary{background-color:#000000}
 .footer-accordion summary::-webkit-details-marker{display:none}
 .footer-accordion summary::after{content:"";width:8px;height:8px;flex:none;margin:0 3px 5px 0;border-right:2px solid #f5f3f2;border-bottom:2px solid #f5f3f2;transform:rotate(45deg);transition:transform .18s ease}
 .footer-accordion[open] summary::after{transform:rotate(225deg);margin-bottom:-5px}
@@ -99,7 +100,7 @@ header{position:relative}
 .footer-detail p{margin:0 0 10px}
 .footer-detail a,.footer-detail button{color:#fff}
 .footer-detail button{padding:0;border:0;background:none;font:inherit;text-decoration:underline;cursor:pointer}
-.footer-find{display:block;margin:0;padding:18px 0 30px;border-top:1px solid #494a4e;border-radius:36px;color:#fff!important;font:600 18px/1.35 Barlow,system-ui,sans-serif;font-family:inherit;text-decoration:none}
+.footer-find{display:block;margin:0;padding:18px 0 0;border-top:1px solid #494a4e;border-radius:36px;background-color:#000000;color:#fff!important;font:600 18px/1.35 Barlow,system-ui,sans-serif;font-family:inherit;text-decoration:none}
 .footer-find::before{content:"";display:inline-block;width:11px;height:11px;margin:0 14px 3px 4px;border-radius:50% 50% 50% 0;background:#ed0034;transform:rotate(-45deg)}
 .footer-cta{text-align:center;padding:16px 0 0}
 .footer-cta p{margin:0 10px 16px;color:#fff;font:600 16px/1.45 Barlow,system-ui,sans-serif}
