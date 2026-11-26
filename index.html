@@ -163,6 +163,7 @@ header{padding-top:16px}
   <details class="footer-accordion"><summary>Legal</summary><div class="footer-detail"><p>Review our terms, cancellations and privacy information.</p><a href="#" id="fLegal">Read legal information</a></div></details>
   <a class="footer-find" href="https://maps.google.com/?q=4-13+Soldiers+Way,+Durban+Central" target="_blank" rel="noopener">Find us</a>
   <div class="footer-cta"><p>Let&apos;s order or delivery</p><a class="footer-order" href="#tabs">Start Order</a></div>
+  <a href="#" id="staffLogin" style="display:block;text-align:center;margin-top:18px;color:#fff;font-size:15px;font-weight:600;text-decoration:underline">Staff login</a>
   <p class="copyright">© <span id="yr">2026</span> Maka Nana Shisanyama. All rights reserved.<br>Made by <a href="https://izzy-10.github.io" target="_blank" rel="noopener">Izzy</a></p>
 </footer>
 </div>
@@ -206,6 +207,7 @@ header{padding-top:16px}
    <button data-p="order">Order food</button>
    <button data-p="guide">Important ordering information</button>
    <button data-p="history">Order history</button>
+   <button data-p="staff">Staff login</button>
    <button data-p="support">Support</button>
    <button data-p="about">About us</button>
    <button data-p="contact">Contact us</button>
@@ -418,6 +420,7 @@ $("mlist").onclick=function(e){var b=e.target.closest("button");if(!b)return;var
  if(k==="order"){hide("menuSheet");cat="Plates";tabs();menu();window.scrollTo(0,0);return}
  if(k==="guide"){hide("menuSheet");cat="Important";tabs();menu();window.scrollTo(0,0);return}
  if(k==="history"){showHist();return}
+ if(k==="staff"){hide("menuSheet");staffOpen();return}
  $("pgTitle").textContent=PAGES[k].t;$("pgBody").innerHTML=PAGES[k].h;hide("menuSheet");show("pageSheet")};
 $("pgBack").onclick=function(){hide("pageSheet");show("menuSheet")};
 $("pgClose").onclick=function(){hide("pageSheet")};
@@ -439,6 +442,12 @@ function showHist(){var h=histGet(),b="";
 $("pgBody").onclick=function(e){var b=e.target.closest("button");if(!b||b.dataset.r===undefined)return;var o=histGet()[+b.dataset.r];if(!o)return;
  cart={};o.items.forEach(function(x){var sp=x.id.split("|");if(find(x.id)&&!soldOut[sp[0]]&&!(sp[1]&&soldOut["st_"+sp[1]]))cart[x.id]=x.q});
  hide("pageSheet");cat="Plates";tabs();menu();sum();if(count()){lines();show("cartSheet")}};
+function staffOpen(){
+ if(ADMIN){pRender();show("portal");return}
+ $("pgTitle").textContent="Staff login";
+ $("pgBody").innerHTML='<p>Staff sign in with their email and password on the main Maka Nana website (the Vercel link). Use <b>Staff login</b> at the bottom of that page or in its ☰ menu.</p><p class="note">On this preview page the kitchen portal opens only for the page owner and Editors signed in to Claude.</p>';
+ show("pageSheet")}
+$("staffLogin").onclick=function(e){e.preventDefault();staffOpen()};
 updateOpen();setInterval(updateOpen,30000);
 setInterval(function(){var w=0;for(var id in orders)if(stOf(id)==="awaiting")w++;if(ADMIN&&w>0)beep()},30000);
 $("yr").textContent=new Date().getFullYear();
