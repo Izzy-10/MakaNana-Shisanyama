@@ -12,7 +12,7 @@ Customers order. Orders go to the Maka Nana portal. Only Maka Nana staff can con
 1. **Project settings (gear) > Your apps > Web (`</>`)**. Register the app and copy the `firebaseConfig`.
 2. Open `public/index.html`. Find `FIREBASE_CONFIG` near the bottom and paste your values.
 3. In the same file, set `ADMIN_EMAILS` to Maka Nana's staff email.
-4. Open `firestore.rules` and make sure the same staff emails are listed (Maka Nana and Sizwe).
+4. Open `firestore.rules`, change `makanana@example.com` to the same email.
 
 ## 3. Publish the rules
 Firestore > **Rules** tab: paste the contents of `firestore.rules` and click **Publish**.
